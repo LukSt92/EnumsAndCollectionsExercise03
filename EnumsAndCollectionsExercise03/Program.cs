@@ -10,6 +10,8 @@ namespace EnumsAndCollectionsExercise03
     {
         static void Main(string[] args)
         {
+            IComparer<Duck> sizeComparer = new DuckComparerBySize();
+            IComparer<Duck> kindComparer = new DuckComparerByKind();
             List<Duck> ducks = new List<Duck>()
             {
                 new Duck() {Kind = KindOfDuck.Mallard, Size = 17},
@@ -19,6 +21,8 @@ namespace EnumsAndCollectionsExercise03
                 new Duck() { Kind = KindOfDuck.Mallard, Size = 14 },
                 new Duck() { Kind = KindOfDuck.Loon, Size = 13 },
             };
+            ducks.Sort(sizeComparer);
+            ducks.Sort(kindComparer);
             PrintDucks(ducks);
         }
         public static void PrintDucks(List<Duck> ducks)
