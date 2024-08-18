@@ -12,6 +12,7 @@ namespace EnumsAndCollectionsExercise03
         {
             IComparer<Duck> sizeComparer = new DuckComparerBySize();
             IComparer<Duck> kindComparer = new DuckComparerByKind();
+            DuckComparer comparer = new DuckComparer();
             List<Duck> ducks = new List<Duck>()
             {
                 new Duck() {Kind = KindOfDuck.Mallard, Size = 17},
@@ -21,8 +22,15 @@ namespace EnumsAndCollectionsExercise03
                 new Duck() { Kind = KindOfDuck.Mallard, Size = 14 },
                 new Duck() { Kind = KindOfDuck.Loon, Size = 13 },
             };
-            ducks.Sort(sizeComparer);
-            ducks.Sort(kindComparer);
+            /*            ducks.Sort(sizeComparer);
+                        ducks.Sort(kindComparer);*/
+            Console.WriteLine("\nSorting by kind then size\n");
+            comparer.SortBy = SortCriteria.KindThenSize;
+            ducks.Sort(comparer);
+            PrintDucks(ducks);
+            Console.WriteLine("\nSorting by size then kind\n");
+            comparer.SortBy = SortCriteria.SizeThenKind;
+            ducks.Sort(comparer);
             PrintDucks(ducks);
         }
         public static void PrintDucks(List<Duck> ducks)
